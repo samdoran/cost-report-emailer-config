@@ -1,0 +1,24 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: koku-emailer-config-template
+  annotations:
+    openshift.io/display-name: "koku-report-emailer-config"
+    openshift.io/long-description: "This template defines resources needed to configure the koku-report-emailer."
+    openshift.io/provider-display-name: "Red Hat, Inc."
+labels:
+  app: koku-emailer
+  template: koku-emailer
+objects:
+- apiVersion: v1
+  kind: ConfigMap
+  metadata:
+    name: koku-emailer-config
+  data:
+    config.yaml: |-
+      ---
+      ci:
+        reports:
+        - report_type: AWS
+        - report_type: IBM
+        - report_type: AZURE
